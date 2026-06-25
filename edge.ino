@@ -111,6 +111,7 @@ void loop() {
   if (now - lastPublish >= publishInterval) {
     lastPublish = now;
 
+    // status bahwa pintu sudah berhasil terbuka dengan rf ID
     float suhu = dht.readTemperature();
     float hum = dht.readHumidity();
 
@@ -119,12 +120,22 @@ void loop() {
       hum = random(600, 900) / 10.0;
     }
 
-    String payload = "{\"temperature\":";
-    payload += suhu;
-    payload += "}";
+    // {
+    //   "door_status": "OPEN",
+    //   "rfid_uid": "A3B91C2D",
+    //   "access": "GRANTED",
+    //   "buzzer": false,
+    //   "timestamp": "2026-06-10 08:30:12"
+    // }
 
-    Serial.print("📤 Publish suhu: ");
+    String payload = "{\"door_status\":\"OPEN\", \"rfid_uid\":\"A3B91C2D\", "
+                     "\"access\":\"GRANTED\", \"buzzer\":false, "
+                     "\"timestamp\":\"2026-06-10 08:30:12\"}";
+    // payload += suhu;
+    // payload += "}";
+
+    Serial.print("📤 Publish door: ");
     Serial.println(payload);
-    client.publish("kampus/suhu", payload.c_str());
+    client.publish("door/1", payload.c_str());
   }
 }
