@@ -10,7 +10,7 @@ client.on("connect", () => {
 
     console.log("Edge Connected terhubung ke broker");
 
-    client.subscribe(config.topics.suhu);
+    client.subscribe(config.topics.door);
 
 });
 
@@ -32,19 +32,19 @@ client.on("message", async (topic, message) => {
     // EXECUTE
     // ======================
 
-    if (action.kipas) {
+    // if (action.kipas) {
 
-        client.publish(config.topics.kipas, action.kipas);
-        console.log("Execute kipas:", action.kipas);
+    //     client.publish(config.topics.kipas, action.kipas);
+    //     console.log("Execute kipas:", action.kipas);
 
-    }
+    // }
 
-    if (action.lampu) {
+    // if (action.lampu) {
 
-        client.publish(config.topics.lampu, action.lampu);
-        console.log("Execute lampu:", action.lampu);
+    //     client.publish(config.topics.lampu, action.lampu);
+    //     console.log("Execute lampu:", action.lampu);
 
-    }
+    // }
 
     // ======================
     // SEND TO CLOUD
