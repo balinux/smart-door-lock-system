@@ -4,9 +4,7 @@ const thingsboard = {
   url: "http://demo.thingsboard.io/api/v1/",
 };
 const topics = {
-  suhu: "kampus/suhu",
-  kipas: "kampus/kipas",
-  lampu: "kampus/lampu",
+  door: "door/1",
 };
 
 export default {
